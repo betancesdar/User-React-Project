@@ -8,6 +8,11 @@ export const UsersContainer = styled.div`
     align-content: center;
     margin-bottom: 2rem;
     margin-left: 4rem;
+
+    @media (max-width: 768px) { 
+        margin-left: 0;
+        padding: 0 1rem;
+    }
 `
 
 export const Card = styled(motion.div)`
@@ -20,6 +25,16 @@ export const Card = styled(motion.div)`
     overflow: hidden;
     cursor: pointer;
     transition: all .3s ease-in-out;
+
+    @media (max-width: 1024px) { /* Medium Screens */
+        width: 45%;
+    }
+
+    @media (max-width: 768px) { /* Small Screens */
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
 `
 
 export const CardMedia = styled(motion.div)`
@@ -36,9 +51,17 @@ export const CardMedia = styled(motion.div)`
         transition: all .3s ease;
     }
 
+    @media (max-width: 768px) { 
+        height: 200px;
+    }
+
 `
 export const CardBody = styled.div`
     padding: 4px 20px 20px;
+
+    @media (max-width: 768px) { 
+        padding: 4px 10px 10px;
+    }
 `
 export const CardText = styled.div`
     display: flex;
@@ -55,6 +78,8 @@ export const CardText = styled.div`
         font-size: 16px;
         font-family: sans-serif;
     }
+
+ 
 `
 
 export const MoreInfo = styled.div`
