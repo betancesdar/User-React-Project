@@ -1,90 +1,9 @@
-*{
-  margin: 0;
-  padding: 0;
-  
-}
-html{
-  font-family: 'Roboto',Arial, Helvetica, sans-serif;
-}
-
-.user-container{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.card {   
-    width: 200px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    cursor: pointer;
-    margin: 15px 15px;
-    transition: all 0.3s ease-in-out;
-  }
+.App{
+ text-align: center;
  
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(252, 38, 0, 0.3);
-    transition: all 0.3s ease-out;
+}
 
-  }
-  
-  .container {
-    padding: 2px 16px;
-  }
 
-  .user{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: center;
-  }
-  .user-greet{
-    color: orangered;
-    font-family: sans-serif;
-    margin: 15px 15px;
-  }
-
-  .user-name{
-   display: flex;
-   margin-top: 1px;
-   font-size: 18px;
-   font-weight: bold;
-   align-items: center;
-   justify-content: center;
-   margin-bottom: 10px;
-  }
-  .user-image{
-    width: 100%;
-  }
-
-  .user-button{
-    padding: 10px;
-    margin: 10px 10px;
-    width: 150px;
-    align-self: center;
-    border-radius: 2px;
-    border-color: orangered;
-    color: orangered;
-    background-color: transparent;
-    cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  }
-
-  .user-button:hover{
-      background-color: orangered;
-      color: white;
-  }
-
-  .user-details{
-    margin: 6px 6px;
-    padding: 3px 3px;
-  }
 
  
 

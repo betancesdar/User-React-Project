@@ -1,13 +1,26 @@
 import './App.css'
-import Nabvar from './components/Nabvar';
+import Navbar from './components/Navbar';
 import UserCard from './components/UserCard';
+import { UsersContainer } from './components/UserCardStyled';
+import useFetchData from './hooks/useFetchData';
+
 
 function App() {
+  const URL = 'https://randomuser.me/api/?results=15'
+  const users = useFetchData(URL);
+
   return (
     <div className="App">
-    <Nabvar />
-    <UserCard />
-    
+    <Navbar />
+    <UsersContainer>
+    {users?.map((user)=> {
+      return(
+        <UserCard user={user}/>
+      )
+    })}
+    </UsersContainer>
+
+   
     </div>
   )
 }

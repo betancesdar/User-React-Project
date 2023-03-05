@@ -1,48 +1,76 @@
-import { motion } from 'framer-motion';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import '.././App.css'
+import { spring } from 'framer-motion';
+import { useState } from 'react';
+import { Avatar, Card, CardBody, CardMedia, CardText, MoreInfo, User, UsernameInfo,Username,UsernameText, CityInfo, City, CityText,MetaOtherInfoList,MetaOtherInfoListItem } from './UserCardStyled';
 
 
-const UserCard = () => {
-    const [users, setUsers] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
+const UserCard = ({user}) => {
 
-    const baseUrl = 'https://randomuser.me/api/?results=15'
-  
-    useEffect(()=> {
-      axios.get(baseUrl)
-        .then(response => setUsers(response.data.results))
-        .catch(error => console.log(error))
-    }, []); 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const animatedCardMedia = isHovered ? {height:"170px"} : {height:"auto"};
+  const showOtherInfo = {opacity:1,height:"auto"};
+  const hideOtherInfo = {opacity:0, height:0};
+  const animatedOther = isHovered ? hideOtherInfo : showOtherInfo;
+
+  const animatedMetaList = isHovered ? showOtherInfo : hideOtherInfo;
+
+  const transition = {
+    duration:0.25,
+    type:'spring',
+    bounce:0.2,
+    ease: 'easeIn',
+  };
   
   return (
-    <div className='user-container'>
-      {users.map(user=> (
-        <motion.div layout key={user.login.uuid} className='card' onClick={() => setIsOpen(!isOpen)}>
-        <article className='user'>
-          <motion.img layout="preserve-aspect" src={user.picture.large} alt={user.name.first} className='user-image' />
-          <container className='container'>
-          <motion.p layout="position" className='user-greet'>Hello my name is: </motion.p>
-          <span layout className='user-name'>{`${user.name.first} ${user.name.last}`}</span>
-          
-          <motion.button layout className='user-button'onClick={() => setIsOpen(!isOpen)}>Show more details</motion.button>         
-            {isOpen &&(
-            <motion.div layout className='user-details'>
-              <p><strong>Gender:</strong></p>
-              <p>{user.gender}</p>
-              <p><strong>Email:</strong></p>
-              <p> {user.email}</p>
-              <p><strong>Phone:</strong></p>
-              <p>{user.phone}</p>
-            </motion.div>
-            )}         
-          </container>
-        </article>
-        </motion.div>
-       
-      ))}
-      </div>
+    <Card onMouseEnter={()=> setIsHovered(true)}
+    onMouseLeave={()=> setIsHovered(false)} key={user.login.uuid}>
+      <CardMedia animate={animatedCardMedia} transition{...transition}>
+        <img src={user?.picture.large} alt={user?.name.first}/>
+      
+      </CardMedia>
+      <CardBody>
+        <CardText>
+            <span>Hello my name is</span>
+            <h3>{`${user?.name.first} ${user.name.last}`}</h3>
+        </CardText>
+        {!isHovered && (
+          <MoreInfo animate={animatedOther}>
+          <User>
+            <Avatar>
+            <img src={user?.picture.medium} />
+            </Avatar>
+            <UsernameInfo>
+            <span>Username: </span>
+              <Username>
+                <UsernameText>{user?.login.username}</UsernameText>
+              </Username>
+            </UsernameInfo>
+          </User>
+          <CityInfo>
+            <span>City: </span>
+            <City>
+              <CityText>{user?.location.city}</CityText>
+            </City>
+          </CityInfo>
+        </MoreInfo>)}
+
+        <MetaOtherInfoList animate={animatedMetaList}>
+          <MetaOtherInfoListItem>
+            <div>Gender: </div>
+            <div>{user?.gender}</div>
+          </MetaOtherInfoListItem>
+          <MetaOtherInfoListItem>
+            <div>Email: </div>
+            <div>{user.email}</div>
+          </MetaOtherInfoListItem>
+          <MetaOtherInfoListItem>
+            <div>Phone#: </div>
+            <div>{user.phone}</div>
+          </MetaOtherInfoListItem>
+        </MetaOtherInfoList>
+      </CardBody>
+    </Card>
+   
   )
 }
 
